@@ -43,43 +43,52 @@ public class Phone {
 	}
 
 	
-	/*
-	 * Метод регистрации в сети
-	 */
-	public void registration() {
-		if (this.checkRegistration()) {
-			System.out.println("Such number has been registered before");
-			return;
-		}
-		if (Network.checkLengthOfMass()==false) Network.expendArray(); //Проверка если размерности мало то увеличить
-		String [] mass = Network.getPhones();
-		mass[Network.getFlag()]=this.getNumber();
-		Network.setFlag(Network.getFlag()+1);
-		Network.setPhones(mass);
-		System.out.println("Number "+this.getNumber()+" has been registered");
-		
-	}
+
 	/*
 	 * Метод звонка на другой номер
 	 * 
 	 */
-	public void call(Phone contact) {
-		if (this.getNumber().equals(contact.getNumber())) {
+	public void call(String contact) {
+		
+		if (this.getNumber().equals(contact)) {
 			System.out.println("You can't to call to your number");
 			return;
 		}
-		if (contact.checkRegistration()) 
-			System.out.println("Number "+this.getNumber()+ " calling to "+contact.getNumber());
+		if (checkRegistration(contact)) 
+			System.out.println("Number "+this.getNumber()+ " calling to "+contact);
 		else System.out.println("Such number isn't exist or not registered");
 	}
 	/*
 	 * Метод проверки регистрации в сети
 	 */
 	public  boolean checkRegistration() {
-		String [] mass =Network.getPhones();  
+		String [] mass = network.getPhones();  
 		for (int i = 0; i < mass.length; i++) {
 			if (this.getNumber().equals(mass[i])) return true;			
 		}  return false;
 	}
+	public  boolean checkRegistration(String number) {
+		String [] mass = network.getPhones();  
+		for (int i = 0; i < mass.length; i++) {
+			if (number.equals(mass[i])) return true;			
+		}  return false;
+	}
+	/*
+	 * Метод регистрации в сети
+	 */	
+	public void registration() {
+		if (this.checkRegistration()) {
+			System.out.println("Such number has been registered before");
+			return;
+		}
+		network.check(); //Проверка состояния оператора 
+		String [] mass =network.getPhones();
+		mass[network.getFlag()]=getNumber();
+		network.setFlag(network.getFlag()+1);
+		network.setPhones(mass);
+		System.out.println("Number "+this.getNumber()+" has been registered");
+		
+	}
+	
 
 }

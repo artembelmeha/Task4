@@ -2,17 +2,15 @@ import java.lang.*;
 
 public class Network {
 	private String name;
-	private static int flag;
-	private static String[] phones=new String[50];
+	private int flag;
+	private String[] phones=new String[50];
 	
 	
 	
 	public Network(String name) {
 		super();
 		this.name = name;
-	}
-	
-	
+	}	
 	public Network() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -24,8 +22,6 @@ public class Network {
 	public String getName() {
 		return name;
 	}
-
-
 	/**
 	 * @param name the name to set
 	 */
@@ -37,46 +33,47 @@ public class Network {
 	/**
 	 * @return the flag
 	 */
-	public static int getFlag() {
+	public int getFlag() {
 		return flag;
-	}
-
-	/**
+	}	/**
 	 * @param flag the flag to set
 	 */
-	public static void setFlag(int flag) {
-		Network.flag = flag;
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 
 	/**
 	 * @return the phones
 	 */
-	public static String[] getPhones() {
+	public String[] getPhones() {
 		return phones;
 	}
 	/**
 	 * @param phones the phones to set
 	 */
-	public static void setPhones(String[] phones) {
-		Network.phones = phones;
+	public void setPhones(String[] phones) {
+		this.phones = phones;
 	}
 	/*
 	 * метод проверки размерности
 	 */
-	public static boolean checkLengthOfMass() {
-		if (Network.flag==Network.phones.length) return false;
+	public boolean checkLengthOfMass() {
+		if (this.flag==this.phones.length) return false;
 		return true;
 	}
 	/*
 	 * метод расширения размерности массива
 	 */
-	public static void expendArray() {
-		String [] mass = new String[Network.phones.length+20];
-		System.arraycopy(Network.phones, 0, mass, 0, Network.phones.length);
-		Network.phones = mass;
+	public  void expendArray() {
+		String [] mass = new String[this.phones.length+20];
+		System.arraycopy(this.phones, 0, mass, 0, this.phones.length);
+		this.phones = mass;
 		
 	}
-	
+	public void check() {
+		if (this.checkLengthOfMass()==false) this.expendArray(); //если размерности мало то увеличить
+	}
+
 	
 	
 	

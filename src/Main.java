@@ -13,9 +13,10 @@ public class Main {
 		ph2.registration();
 		ph3.registration();
 		ph5.registration();
-		ph1.call(ph2);
-		ph1.call(ph4);
-		ph1.call(ph1);
+		System.out.println(ph1.getNumber());
+	   ph1.call("38050323001");
+		ph1.call(ph3.getNumber());
+		ph1.call(ph4.getNumber());         
 	}
 
 }
